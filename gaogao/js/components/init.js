@@ -4,7 +4,7 @@
 export function Init(state) {
     return `
         <div class="text-center animate-in fade-in duration-500">
-            <h1 class="text-6xl font-black text-orange-500 mb-2 italic drop-shadow-[0_5px_0_#9a3412]">番犬ガオガオ</h1>
+            <h1 class="text-6xl font-black text-orange-500 mb-2 italic drop-shadow-[0_5px_0_#9a3412]">番犬モコモコ</h1>
             <p class="text-orange-200/50 text-xs mb-12 tracking-[0.5em] font-bold">SURVIVAL EDITION</p>
             
             <div class="bg-amber-950/40 p-10 rounded-[3.5rem] border border-white/5 backdrop-blur-xl shadow-2xl">
