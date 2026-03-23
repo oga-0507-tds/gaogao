@@ -154,11 +154,13 @@ class GameController {
     
     // すでに他の色を叩き始めている場合は、その色以外タップ不可
     if (this.state.selectedBoneType && this.state.selectedBoneType !== type) {
+        // ガード時は何もせず終了
         return;
     }
     // まだ色が未定なら、この色で固定する
     if (!this.state.selectedBoneType) {
         this.state.selectedBoneType = type;
+        this.render(); // 即座に画面更新して他のボタンをdisabledにする
     }
 
     // 1人あたりの制限時間にするため、ここではタイマーを止めない（継続）
