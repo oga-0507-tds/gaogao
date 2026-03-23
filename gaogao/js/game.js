@@ -20,7 +20,8 @@ class GameController {
             trapIdx: -1,
             angerLevel: 0, // 0:静か, 1:揺れる, 2:激しい
             anger: 0,      // 怒りゲージ用 (0-100)
-            timeLeft: 10,  // 制限時間
+            timeLeft: 10,       // 制限時間
+            selectedBoneType: null, // 現在のターンで選択中の骨の色
             lastMessage: "準備ができたらスタート！"
         };
         this.timerInterval = null;
@@ -102,6 +103,7 @@ class GameController {
         this.state.gameOver = false;
         this.state.angerLevel = 0;
         this.state.anger = 0;
+        this.state.selectedBoneType = null;
         this.state.view = 'PLAYING';
         this.state.lastMessage = `${this.state.players[0].name} の番です！`;
         this.startTimer();
@@ -150,6 +152,15 @@ class GameController {
     handleBoneSelect(type, points) {
     if (this.state.gameOver) return;
     
+    // すでに他の色を叩き始めている場合は、その色以外タップ不可
+    if (this.state.selectedBoneType && this.state.selectedBoneType !== type) {
+        return;
+    }
+    // まだ色が未定なら、この色で固定する
+    if (!this.state.selectedBoneType) {
+        this.state.selectedBoneType = type;
+    }
+
     // 1人あたりの制限時間にするため、ここではタイマーを止めない（継続）
 
     // 指定された色の「まだ取られていない骨」を1つ探す
@@ -197,6 +208,9 @@ class GameController {
                 // 骨が取れたら少し安心するので怒りレベルをリセット表示にする
                 this.state.angerLevel = 0;
                 this.state.anger = Math.max(0, this.state.anger - 10); // ゲージも少し下げる
+                
+                // 色のロックを解除
+                this.state.selectedBoneType = null;
 
                 // 交代
                 this.state.currentIdx = (this.state.currentIdx + 1) % this.state.playerCount;
