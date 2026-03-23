@@ -94,7 +94,7 @@ export function Playing(state) {
             <!-- 3. 骨の選択ボタン（ポイント設定の明示） -->
             <div class="grid grid-cols-3 gap-1 w-full max-sm mb-1 px-2 shrink-0">
                 <!-- White (1pt) -->
-                <button onclick="window.game.handleBoneSelect('white', 1)" ${counts.white === 0 ? 'disabled' : ''}
+                <button onclick="window.game.handleBoneSelect('white', 1)" ${(counts.white === 0 || (state.selectedBoneType && state.selectedBoneType !== 'white')) ? 'disabled' : ''}
                     class="group flex flex-col items-center p-1 bg-white/5 rounded-xl border-2 border-white/10 disabled:opacity-10 active:scale-95 transition-all">
                     <div class="mb-2">
                         ${renderBone('#f5f5f5', 'w-3 h-8', 'w-2.5 h-2.5')}
@@ -105,7 +105,7 @@ export function Playing(state) {
                 </button>
 
                 <!-- Blue (3pt) -->
-                <button onclick="window.game.handleBoneSelect('blue', 3)" ${counts.blue === 0 ? 'disabled' : ''}
+                <button onclick="window.game.handleBoneSelect('blue', 3)" ${(counts.blue === 0 || (state.selectedBoneType && state.selectedBoneType !== 'blue')) ? 'disabled' : ''}
                     class="group flex flex-col items-center p-1 bg-blue-900/10 rounded-xl border-2 border-blue-500/20 disabled:opacity-10 active:scale-95 transition-all">
                     <div class="mb-2">
                         ${renderBone('#3b82f6', 'w-3 h-8', 'w-2.5 h-2.5')}
@@ -116,7 +116,7 @@ export function Playing(state) {
                 </button>
 
                 <!-- Red (5pt) -->
-                <button onclick="window.game.handleBoneSelect('red', 5)" ${counts.red === 0 ? 'disabled' : ''}
+                <button onclick="window.game.handleBoneSelect('red', 5)" ${(counts.red === 0 || (state.selectedBoneType && state.selectedBoneType !== 'red')) ? 'disabled' : ''}
                     class="group flex flex-col items-center p-1 bg-red-900/10 rounded-xl border-2 border-red-500/20 disabled:opacity-10 active:scale-95 transition-all">
                     <div class="mb-2">
                         ${renderBone('#ef4444', 'w-3 h-8', 'w-2.5 h-2.5')}
